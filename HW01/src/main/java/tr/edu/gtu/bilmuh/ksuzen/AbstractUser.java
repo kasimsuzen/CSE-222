@@ -4,7 +4,7 @@ package tr.edu.gtu.bilmuh.ksuzen;
  * @author Kasım Süzen
  * Created by siyah on 20.02.2016.
  */
-public class abstractUser implements userInterface{
+public class AbstractUser implements userInterface{
     private int IDNo;
     private String name;
 
