@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fae39986-9fbd-45f5-86bc-79b32dbcad1d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/tr/edu/gtu/bilmuh/ksuzen/Admin.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/tr/edu/gtu/bilmuh/ksuzen/Course.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tr/edu/gtu/bilmuh/ksuzen/Admin.java" afterPath="$PROJECT_DIR$/src/main/java/tr/edu/gtu/bilmuh/ksuzen/Admin.java" />
     </list>
     <ignored path="HW01.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,12 +58,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Admin.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Admin.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/tr/edu/gtu/bilmuh/ksuzen/Admin.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16648531">
-              <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Course.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tr/edu/gtu/bilmuh/ksuzen/Course.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#342#343#0" expanded="true" />
+                <element signature="e#375#376#0" expanded="true" />
+                <element signature="e#427#428#0" expanded="true" />
+                <element signature="e#471#472#0" expanded="true" />
+                <element signature="e#511#512#0" expanded="true" />
+                <element signature="e#547#548#0" expanded="true" />
+                <element signature="e#605#606#0" expanded="true" />
+                <element signature="e#655#656#0" expanded="true" />
+                <element signature="e#694#695#0" expanded="true" />
+                <element signature="e#721#722#0" expanded="true" />
+                <element signature="e#769#770#0" expanded="true" />
+                <element signature="e#801#802#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,6 +116,7 @@
         <option value="$PROJECT_DIR$/src/main/java/tr/edu/gtu/bilmuh/ksuzen/userInterface.java" />
         <option value="$PROJECT_DIR$/src/main/java/tr/edu/gtu/bilmuh/ksuzen/abstractUser.java" />
         <option value="$PROJECT_DIR$/src/main/java/tr/edu/gtu/bilmuh/ksuzen/Admin.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tr/edu/gtu/bilmuh/ksuzen/Course.java" />
       </list>
     </option>
   </component>
@@ -1027,7 +1053,7 @@
       <workItem from="1455868151963" duration="1213000" />
       <workItem from="1455968437623" duration="946000" />
       <workItem from="1455970191827" duration="654000" />
-      <workItem from="1455986457745" duration="2441000" />
+      <workItem from="1455986457745" duration="3173000" />
     </task>
     <task id="LOCAL-00001" summary="AbstractUser class created">
       <created>1455987666343</created>
@@ -1035,11 +1061,17 @@
       <option name="project" value="LOCAL" />
       <updated>1455987666343</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Admin class created">
+      <created>1455989181581</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1455989181581</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5254000" />
+    <option name="totallyTimeSpent" value="5986000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1083,7 +1115,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="AbstractUser class created" />
-    <option name="LAST_COMMIT_MESSAGE" value="AbstractUser class created" />
+    <MESSAGE value="Admin class created" />
+    <option name="LAST_COMMIT_MESSAGE" value="Admin class created" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1184,9 +1217,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tr/edu/gtu/bilmuh/ksuzen/Admin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16648531">
-          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/tr/edu/gtu/bilmuh/ksuzen/Course.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#342#343#0" expanded="true" />
+            <element signature="e#375#376#0" expanded="true" />
+            <element signature="e#427#428#0" expanded="true" />
+            <element signature="e#471#472#0" expanded="true" />
+            <element signature="e#511#512#0" expanded="true" />
+            <element signature="e#547#548#0" expanded="true" />
+            <element signature="e#605#606#0" expanded="true" />
+            <element signature="e#655#656#0" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
+            <element signature="e#721#722#0" expanded="true" />
+            <element signature="e#769#770#0" expanded="true" />
+            <element signature="e#801#802#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
