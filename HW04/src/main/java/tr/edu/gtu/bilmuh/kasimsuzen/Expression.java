@@ -9,17 +9,13 @@ import java.util.ArrayList;
 public class Expression {
     private ArrayList<String> lines;
 
-    public Expression(){
-        lines = new ArrayList<String>();
-    }
+    public Expression(){ lines = new ArrayList<>(); }
 
     public void addExp(String expData){
-        lines.add(expData);
+        lines.add(expData.toLowerCase());
     }
 
-    public String getExp(int index){
-        return lines.get(index);
-    }
+    public String getExp(int index){ return lines.get(index); }
 
     public int getSize(){
         return lines.size();
