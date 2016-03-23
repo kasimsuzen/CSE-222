@@ -13,21 +13,18 @@ import java.util.stream.Stream;
  */
 public class Assembler {
     private Expression expList = new Expression();
+    private ArrayList<String> assemblyCode;
     private Stack<String> tempPostFixes;
     private ArrayList<Stack<String>> postFixes;
     private ArrayList<String> opList;
     private String filePath;
+    private Instruction inst = new Instruction();
+    Memory mem = Memory.getInstance();
 
-    public void reserveStack(Stack<String> obj){
-        Stack<String> temp = new Stack<String>();
-        System.out.printf("geliş %s\n",obj);
-        while(!obj.empty()){
-            temp.push(obj.pop());
-        }
-        obj = temp;
-        System.out.printf("gidiş %s\n",obj);
-    }
-
+    /**
+     * Constructor for this class takes a path of a file to read
+     * @param file Path to input file
+     */
     public Assembler(String file){
         filePath = file;
         tempPostFixes = new Stack<>();
@@ -35,6 +32,10 @@ public class Assembler {
         opList = new ArrayList<>();
     }
 
+    /**
+     * Reads file using file path that given in constructor.
+     * @return True on success false on error
+     */
     public boolean readFile(){
 
         Path path = Paths.get(filePath);
@@ -48,6 +49,10 @@ public class Assembler {
         return true;
     }
 
+    /**
+     * Converts given infix expression to postfix
+     * @return True on success false on error
+     */
     public boolean convertToPostFix(){
         ArrayList<String> expressionArray = new ArrayList<>();
         String[] stringArray;
@@ -119,9 +124,71 @@ public class Assembler {
         return true;
     }
 
-    public static void main(String [] args){
-        Assembler as = new Assembler("input.txt");
-        as.readFile();
-        as.convertToPostFix();
+    /**
+     * Creates assembly code using postfix expressions that taken by input file
+     */
+    public void makeAssemblyCode(){
+        String operand1,operand2,operator;
+        assemblyCode = new ArrayList<>();
+        Stack<String> operandStack = new Stack<>();
+        char op;
+        for (int i=0; i < postFixes.size(); ++i) {
+            for (int j=0; j < postFixes.get(i).size(); ++j) {
+                if(postFixes.get(i).get(j).charAt(0) >= 'a' && postFixes.get(i).get(j).charAt(0) <= 'z' ){
+                    mem.addElement(postFixes.get(i).get(j));
+                }
+            }
+        }
+
+        for (int i=0; i < postFixes.size(); ++i) {
+            for (int j=0; j < postFixes.get(i).size(); ++j){
+                operandStack = new Stack<>();
+                if(isThereOperator(postFixes.get(i).get(j))){
+                    op = postFixes.get(i).get(j).charAt(0);
+
+                    if(op == '+')
+                        assemblyCode.add(inst.add(postFixes.get(i).pop(),postFixes.get(i).pop(),mem.emptyReg()));
+                    else if(op == '-') {
+                        assemblyCode.add(inst.subtract(postFixes.get(i).pop(), postFixes.get(i).pop(), mem.emptyReg()));
+                    }
+                    else if(op == '*')
+                        assemblyCode.add(inst.multiply(postFixes.get(i).pop(),postFixes.get(i).pop()));
+                    else if(op == '/')
+                        assemblyCode.add(inst.div(postFixes.get(i).pop(),postFixes.get(i).pop()));
+                    else if(op == '=') {
+                        postFixes.get(i).pop();
+                        String tmp = postFixes.get(i).pop();
+                        if(tmp.charAt(0) != '$')
+                            assemblyCode.add(inst.loadImm(postFixes.get(i).pop(),Integer.parseInt(tmp)));
+                        else
+                            assemblyCode.add(inst.move(postFixes.get(i).pop(),tmp));
+                    }
+                }
+                else if(postFixes.get(i).get(j).contains("print")){
+                    assemblyCode.add(inst.print(postFixes.get(i).pop()));
+                }
+                else if(postFixes.get(i).get(j).charAt(0) >= 'a' && postFixes.get(i).get(j).charAt(0) <= 'z' ){
+                    operandStack.push(postFixes.get(i).get(j));
+                }
+                else if(Integer.parseInt(postFixes.get(i).get(j)) >= 0 && Integer.parseInt(postFixes.get(i).get(j)) <= 0){
+                    operandStack.push(postFixes.get(i).get(j));
+                }
+            }
+        }
+
+        try {
+            Files.write(Paths.get("output.txt"), assemblyCode);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * To check is there operator in string
+     * @param str String to be searched
+     * @return True if * - / + were there in string false when not
+     */
+    public boolean isThereOperator(String str){
+        return str.contains("+") || str.contains("-") || str.contains("*") || str.contains("/") || str.contains("=");
     }
 }
