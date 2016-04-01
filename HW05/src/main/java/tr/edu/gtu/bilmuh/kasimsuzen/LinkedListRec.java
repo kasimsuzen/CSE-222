@@ -109,7 +109,7 @@ public class LinkedListRec < E > {
     }
 
     /** Wrapper method for adding a new node to the end of a list.
-     @param data The data for the new node
+     * @param data The data for the new node
      */
     public void add(E data) {
         if (head == null)
