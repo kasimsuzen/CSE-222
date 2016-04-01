@@ -2,7 +2,7 @@ package tr.edu.gtu.bilmuh.kasimsuzen;
 
 /** A recursive linked list class with recursive methods.
  *  @author Koffman and Wolfgang and Kasım Süzen
- *  */
+ */
 
 public class LinkedListRec < E > {
 
