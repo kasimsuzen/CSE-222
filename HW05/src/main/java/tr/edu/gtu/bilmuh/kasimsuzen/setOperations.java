@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by siyah on 01.04.2016.
+ * Created by Kasım Süzen on 01.04.2016
+ * @author Kasım Süzen 111044034
+ * This class implemented for Part 3 of homework which is intersectionOfLists, unionOfLists and isSubset methods these methods descriptions explained below
  */
-public class setOperations <E extends Comparable<? super E>>{
+public class SetOperations<E extends Comparable<? super E>>{
     private ArrayList<E> list1,list2;
 
     /**
@@ -14,7 +16,7 @@ public class setOperations <E extends Comparable<? super E>>{
      * @param arr First ArrayList
      * @param arr2 Second ArrayList
      */
-    public setOperations(ArrayList<E> arr, ArrayList<E> arr2){
+    public SetOperations(ArrayList<E> arr, ArrayList<E> arr2){
         list1 = arr;
         list2 = arr2;
     }
