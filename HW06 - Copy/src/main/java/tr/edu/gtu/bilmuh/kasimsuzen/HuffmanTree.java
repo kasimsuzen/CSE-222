@@ -183,7 +183,7 @@ public class HuffmanTree implements Serializable {
         ArrayList<Character> characterList = new ArrayList<>();
         ArrayList<Integer> weight = new ArrayList<>();
         ArrayList<HuffData> huffdatas = new ArrayList<>();
-        String result = "";
+        String result;
 
         characterList.add(message.charAt(0));
         weight.add(1);
@@ -211,30 +211,95 @@ public class HuffmanTree implements Serializable {
         StringBuilder encodedString = new StringBuilder();
         Stack<Character> asd = new Stack<>();
         for(int i=0; i < message.length();++i) {
-            result += search(encodedString, huffTree, message.charAt(i));
+            result = search(encodedString, huffTree, message.charAt(i),0);
+            System.out.printf("encoded message %c %s\n", message.charAt(i), result);
             encodedString.setLength(0);
         }
-        return result;
+        return null;
     }
 
-    private String search(StringBuilder encodedMessage, BinaryTree<HuffData> localNode, char key){
-        StringBuilder cp1 = new StringBuilder(encodedMessage.toString()),cp2 = new StringBuilder(encodedMessage.toString());
-        String temp = "";
-        if(localNode == null)
-            return "";
+    /*private String searasdach(StringBuilder encodedMessage, BinaryTree<HuffData> localNode, char key, int directions,Stack<Character> ex){
+        String temp = null;
+        int currdir= -1;
+        int addedNumber = 0 ;
+        if(localNode == null) {
+            //encodedMessage.deleteCharAt(encodedMessage.length()-1);
+            return null;
+        }
 
-        if(localNode.getData() != null && localNode.getData().getSymbol() != null && localNode.getData().getSymbol() == key)
+        if(localNode.getLeftSubtree() != null) {
+            ++addedNumber;
+            encodedMessage.append(0);
+
+            ex.add('0');
+            currdir = 0;
+            temp = search(encodedMessage,localNode.getLeftSubtree(),key,0,ex);
+
+            if( temp != null) {
+                return temp;
+            }
+
+            if (addedNumber > 0) {
+                --addedNumber;
+                encodedMessage.deleteCharAt(encodedMessage.length()-1);
+            }
+
+        }
+
+        if (localNode.getData() != null && localNode.getData().getSymbol() != null && key == localNode.getData().getSymbol()) {
             return encodedMessage.toString();
+        }
 
-        temp = search(cp1.append(0),localNode.getLeftSubtree(),key);
-        if(temp.compareTo("") != 0)
-            return temp;
+        if(currdir != 0)
+            currdir = 1;
 
-        temp = search(cp2.append(1),localNode.getRightSubtree(),key);
-        if(temp.compareTo("") != 0)
-            return temp;
+        if(currdir != directions && encodedMessage.length() != 0 && addedNumber > 0) {
+            --addedNumber;
+            encodedMessage.deleteCharAt(encodedMessage.length()-1);
+        }
 
+        if(localNode.getRightSubtree() != null) {
+            currdir = 1;
+            encodedMessage.append(1);
+            temp = search(encodedMessage, localNode.getRightSubtree(), key, 1,ex);
+            if( temp != null)
+                return temp;
+        }
+
+        return null;
+    }
+*/
+    private String search(StringBuilder encodedMessage, BinaryTree<HuffData> localNode, char key, int directions){
+        String temp = "";
+        if(localNode != null){
+            encodedMessage.append(directions);
+            if(localNode.getData() != null && localNode.getData().getSymbol() != null && localNode.getData().getSymbol() == key)
+                return encodedMessage.toString();
+
+            temp = search(encodedMessage,localNode.getLeftSubtree(),key,0);
+            if(temp.compareTo("") != 0)
+                return temp;
+            encodedMessage.deleteCharAt(encodedMessage.length()-1);
+
+            temp = search(encodedMessage,localNode.getRightSubtree(),key,1);
+            if(temp.compareTo("") != 0)
+                return temp;
+        }
+
+            //encodedMessage.deleteCharAt(encodedMessage.length()-1);
         return temp;
+    }
+
+    private String tempSearch(char key){
+        StringBuilder strBuild = new StringBuilder();
+        for (int i=0; true; ++i){
+            if (strBuild.length() == 0)
+                strBuild.append(Integer.toString(i%2));
+            if(strBuild.length() > 0 && strBuild.toString().charAt(strBuild.length()-1) == '1')
+                strBuild.append(Integer.toString(i%2));
+
+            System.out.printf("let ses %s",decode(strBuild.toString()));
+        }
     }
 
 // Insert solution to programming exercise 1, section 6, chapter 6 here
@@ -284,7 +349,9 @@ public class HuffmanTree implements Serializable {
         String code = "110000100111111100101000011";
         String decodedCode = Htree.decode(code);
         System.out.println("Code to Message : \n"+code+" : \t"+decodedCode);
-
+        System.out.printf("%s",Htree);
+        BinaryTree<HuffData> asd = new BinaryTree<>();
+        Htree.encode("merhaba bendeburaya",asd);
     }
 }
 /*</listing>*/
