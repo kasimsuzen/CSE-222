@@ -21,5 +21,9 @@ public interface PriorityQueueInterface<E extends Comparable<E>> {
 
     int size();
 
+    /**
+     * Checks that if vector is empty is empty returns true else returns false
+     * @return True on success false on fail
+     */
     boolean isEmpty();
 }

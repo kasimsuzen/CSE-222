@@ -1,6 +1,7 @@
 package tr.edu.gtu.bilmuh.kasimsuzen;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -15,7 +16,38 @@ public class HW06 {
         hw06Result = Htree.encode("merhaba bendeburaya yeni geldim lol rofl wow wowww",asd);
         System.out.printf("Part 1 result %s\n",hw06Result);
 
-        test(100);
+        System.out.printf("Part 2 results \n");
+
+        BinarySearchTree<Integer> BSTree = new BinarySearchTree<Integer>();
+        BSTree.add(2);
+        BSTree.add(1);
+        BSTree.add(12);
+        BSTree.add(20);
+        BSTree.add(11);
+        BSTree.add(50);
+        BSTree.add(80);
+        BSTree.add(55);
+        BSTree.add(99);
+
+        System.out.println(BSTree.find(21));
+        System.out.println(BSTree.toString());
+        BSTree.add(15);
+        System.out.println(BSTree.toString());
+        BSTree.delete(11);
+        System.out.println(BSTree.toString());
+        System.out.printf("%s\nafter",BSTree.toString());
+        Iterator it = BSTree.iterator();
+        while(it.hasNext()){
+            Integer a = (Integer) it.next();
+            if(a != null)
+                System.out.printf("%s \n",a);
+            else
+                System.out.printf("null\n");
+        }
+        System.out.printf("Part 2 results ends\n");
+        System.out.printf("Part 3 results \n\n");
+        test(1000);
+        System.out.printf("Part 3 results ends\n");
 
     }
 
@@ -49,7 +81,7 @@ public class HW06 {
         System.out.printf("Amount of Time for at array as millisecond is  ");
         System.out.println(System.currentTimeMillis() - arrayMilli);
 
-        System.out.printf("Binary Tree poll test\n");
+        System.out.printf("Binary Tree add test\n");
         binaryMilli = System.currentTimeMillis();
 
         for(int i=0; i < size;++i) {
@@ -60,7 +92,7 @@ public class HW06 {
         System.out.printf("Amount of Time for at binary as millisecond is  ");
         System.out.println(System.currentTimeMillis() - binaryMilli);
 
-        System.out.printf("Linked list poll test\n");
+        System.out.printf("Linked list add test\n");
         linkedMilli = System.currentTimeMillis();
         for(int i=0; i < size;++i) {
             randomInt = random.nextInt(100);

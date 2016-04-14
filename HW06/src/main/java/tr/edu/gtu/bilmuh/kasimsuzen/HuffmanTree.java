@@ -217,6 +217,13 @@ public class HuffmanTree implements Serializable {
         return result;
     }
 
+    /**
+     * Helper function for encode function it does traverse huffman tree recursively
+     * @param encodedMessage Incremental string for encoded string
+     * @param localNode Binary tree for search
+     * @param key Key to find
+     * @return Encoded string according to created huffman tree
+     */
     private String search(StringBuilder encodedMessage, BinaryTree<HuffData> localNode, char key){
         StringBuilder cp1 = new StringBuilder(encodedMessage.toString()),cp2 = new StringBuilder(encodedMessage.toString());
         String temp = "";

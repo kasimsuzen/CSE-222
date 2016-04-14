@@ -86,10 +86,9 @@ public class BinarySearchTree<E extends Comparable<E>>
                 return lastPoint.data;
             }
 
-            @Override
-            public void remove() {
+            /*public void remove() {
                 delete(lastPoint.data);
-            }
+            }*/
 
             private Node<E> findNext(Node<E> localNode,E target){
                 Node<E> right,left;
