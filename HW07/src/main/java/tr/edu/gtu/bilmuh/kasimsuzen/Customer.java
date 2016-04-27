@@ -1,9 +1,12 @@
 package tr.edu.gtu.bilmuh.kasimsuzen;
 
+import java.util.Comparator;
+
 /**
- * Created by kasim on 27.04.2016.
+ * Created by kasim on 27.04.2016
+ *
  */
-public class Customer {
+public class Customer implements Comparator<Customer> {
     private int type;
     private int arrivalTimeHour;
     private int arrivalTimeMinute;
@@ -60,5 +63,28 @@ public class Customer {
         String temp = new String();
         temp = String.format("Customer%d arrival time %d:%d transaction time %d",type,arrivalTimeHour,arrivalTimeMinute,transactionTime );
         return temp;
+    }
+
+    @Override
+    public int compare(Customer o1, Customer o2) {
+        if(o1.getType() < o2.getType())
+            return 1;
+        if(o1.getType() > o2.getType())
+            return -1;
+        if(o1.getType() == o2.getType()) {
+            if (o1.getArrivalTimeHour() < o2.getArrivalTimeHour())
+                return 1;
+            if (o1.getArrivalTimeHour() > o2.getArrivalTimeHour())
+                return -1;
+            if(o1.getArrivalTimeHour() == o2.getArrivalTimeHour()){
+                if(o1.getArrivalTimeMinute() < o2.getArrivalTimeMinute())
+                    return 1;
+                if(o1.getArrivalTimeMinute() > o2.getArrivalTimeMinute())
+                    return -1;
+                else
+                    return 0;
+            }
+        }
+        return 0;
     }
 }

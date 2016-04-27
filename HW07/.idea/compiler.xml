@@ -25,7 +25,7 @@
         <module name="HW07" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.9">
       <module name="HW07" target="1.8" />
     </bytecodeTargetLevel>
   </component>
