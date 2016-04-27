@@ -6,7 +6,7 @@ import java.util.Comparator;
  * Created by kasim on 27.04.2016
  *
  */
-public class Customer implements Comparator<Customer> {
+public class Customer{
     private int type;
     private int arrivalTimeHour;
     private int arrivalTimeMinute;
@@ -65,26 +65,29 @@ public class Customer implements Comparator<Customer> {
         return temp;
     }
 
-    @Override
-    public int compare(Customer o1, Customer o2) {
-        if(o1.getType() < o2.getType())
-            return 1;
-        if(o1.getType() > o2.getType())
-            return -1;
-        if(o1.getType() == o2.getType()) {
-            if (o1.getArrivalTimeHour() < o2.getArrivalTimeHour())
-                return 1;
-            if (o1.getArrivalTimeHour() > o2.getArrivalTimeHour())
+    public static Comparator<Customer> CustomerComparator = new Comparator<Customer>() {
+        @Override
+        public int compare(Customer o1, Customer o2) {
+            if(o1.getType() < o2.getType())
                 return -1;
-            if(o1.getArrivalTimeHour() == o2.getArrivalTimeHour()){
-                if(o1.getArrivalTimeMinute() < o2.getArrivalTimeMinute())
-                    return 1;
-                if(o1.getArrivalTimeMinute() > o2.getArrivalTimeMinute())
+            if(o1.getType() > o2.getType())
+                return 1;
+            if(o1.getType() == o2.getType()) {
+                if (o1.getArrivalTimeHour() < o2.getArrivalTimeHour())
                     return -1;
-                else
-                    return 0;
+                if (o1.getArrivalTimeHour() > o2.getArrivalTimeHour())
+                    return 1;
+                if(o1.getArrivalTimeHour() == o2.getArrivalTimeHour()){
+                    if(o1.getArrivalTimeMinute() < o2.getArrivalTimeMinute())
+                        return -1;
+                    if(o1.getArrivalTimeMinute() > o2.getArrivalTimeMinute())
+                        return 1;
+                    else
+                        return 0;
+                }
             }
+            return 0;
         }
-        return 0;
-    }
+    };
+
 }
