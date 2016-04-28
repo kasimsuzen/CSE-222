@@ -7,7 +7,7 @@ with open("NAME") as f:
 f = open("part2.txt","w")
 f.write("Name    Student Card    Academic Card\n")
 
-counter = 521
+counter = 1521
 
 tempString = ""
 randomNumber = 0
