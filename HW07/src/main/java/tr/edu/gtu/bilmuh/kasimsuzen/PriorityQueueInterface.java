@@ -4,7 +4,8 @@ package tr.edu.gtu.bilmuh.kasimsuzen;
 import java.util.NoSuchElementException;
 
 /**
- * Created by kasim on 14/04/16.
+ * This Interface Created by Kasım süzen 111044034 on 28.04.2016
+ * This interface created for possible future addition to homework
  */
 public interface PriorityQueueInterface<E> {
     boolean add(E e);

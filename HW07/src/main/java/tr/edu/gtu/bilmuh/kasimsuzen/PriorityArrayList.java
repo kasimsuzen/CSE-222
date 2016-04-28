@@ -6,8 +6,9 @@ import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 /**
- * Created by Kasim on 14/04/16
- *
+ * This class Created by Kasım süzen 111044034 on 28.04.2016
+ * This class is ann implementation of priority queue using sorted array list,
+ * Array list will be sort added at each element addition
  */
 public class PriorityArrayList<Customer> implements PriorityQueueInterface<Customer> {
 
