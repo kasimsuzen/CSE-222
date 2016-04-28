@@ -7,8 +7,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
- * Created by kasim on 27.04.2016
- *
+ * This class Created by Kasım süzen 111044034 on 28.04.2016
+ * This classed holds needed methods and data structure for simulation of customer queue using priority as
+ * Customer 1> Customer 2 > Customer 3
  */
 public class Simulator {
     private String filename;
@@ -16,6 +17,10 @@ public class Simulator {
     private PriorityArrayList<Customer> customerQueue;
     private int goldCounter,bronzeCounter,silverCounter,currentHour,currentMinute,lastLoggedHour;
 
+    /**
+     * Constructor of this class takes only filename as String
+     * @param filename Name of file to run simulation
+     */
     public Simulator(String filename) {
         this.filename = filename;
         goldCounter = 0;
@@ -25,11 +30,18 @@ public class Simulator {
         customerQueue = new PriorityArrayList<>(Customer.CustomerComparator);
     }
 
+    /**
+     * No parameter constructor only creates empty Arraylist for customers
+     */
     public Simulator(){
         customers = new ArrayList<>();
     }
 
-    public void readFile(){
+    /**
+     * This function reads customer datas from file and store them to Arraylist for customers if file can not be found or
+     * file can not be read for any reason there will be error message show
+     */
+    public void fileReader(){
 
         // This will reference one line at a time
         String line;
@@ -82,6 +94,9 @@ public class Simulator {
         }*/
     }
 
+    /**
+     *
+     */
     public void run(){
         Customer currentCustomer;
         goldCounter = 0;
@@ -120,12 +135,16 @@ public class Simulator {
 
     }
 
+    /**
+     * In every 20 hour system will log all transaction that been made since the beginning of the program to a log file as
+     * log_for_"inputfilename.extension".log
+     */
     private void logger(){
-        String temp;
+        String temp,logfile;
         temp = String.format("Number of gold customer is %d\nNumber of silver customer is %d\n" +
                 "Number of bronze customer is %d\nAs hour %d:%d\n",goldCounter,silverCounter,bronzeCounter,currentHour,currentMinute);
-
-        Path path = Paths.get("./part1.log");
+        logfile = String.format("./log_for_%s.log",filename);
+        Path path = Paths.get(logfile);
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
             writer.write(temp);
             writer.close();
@@ -135,22 +154,38 @@ public class Simulator {
 
     }
 
+    /**
+     * Updates customerQueue using data from customers Array list.
+     * If current time is bigger or equal to first entries arrival time, first element will be removed from customers array list
+     * will be add to customerQueue and this operation will continue until first element of Array list's is have arrival
+     * time bigger than current time.
+     */
     private void updateQueue(){
         boolean flag = true;
         while (flag && !customers.isEmpty()){
 
-            if (currentHour < customers.get(0).getArrivalTimeHour() && currentMinute <= customers.get(0).getArrivalTimeMinute())
+            if (currentHour < customers.get(0).getArrivalTimeHour())
                 flag = false;
+            else if( currentHour == customers.get(0).getArrivalTimeHour() && currentMinute <= customers.get(0).getArrivalTimeMinute()){
+                flag = false;
+            }
             else{
-//                currentHour = customers.get(0).getArrivalTimeHour();
-//                currentMinute = customers.get(0).getArrivalTimeMinute();
                 customerQueue.add(customers.remove(0));
-                System.out.printf("");
+            }
+
+            if(!flag && customerQueue.peek() == null && !customers.isEmpty()) {
+                incrementTime(0, 1);
+                flag = true;
             }
 
         }
     }
 
+    /**
+     * Increments time by given hour and minute
+     * @param hour hour to add current time
+     * @param minute minute to add current time
+     */
     private void incrementTime(int hour,int minute){
         currentHour += hour;
         currentMinute += minute;
@@ -165,11 +200,4 @@ public class Simulator {
         }
 
     }
-
-    public static void main(String[] args){
-        Simulator a = new Simulator("data2.txt");
-        a.readFile();
-        a.run();
-    }
-
 }
